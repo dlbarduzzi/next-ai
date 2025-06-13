@@ -6,11 +6,10 @@ import { useMutation } from "@tanstack/react-query"
 
 export function SignUp() {
   const trpc = useTRPC()
-  const query = useMutation(trpc.foo.mutationOptions())
+  const query = useMutation(trpc.auth.signUp.mutationOptions())
 
   async function onSubmit() {
-    const res = await query.mutateAsync({ text: "John" })
-    console.warn({ res })
+    await query.mutateAsync({ email: "dylan@email.com" })
   }
 
   return (

@@ -1,19 +1,8 @@
-import { z } from "zod"
-import { procedure, router } from "./init"
+import { router } from "./init"
+import { authRouter } from "@/modules/auth/router"
 
 export const appRouter = router({
-  foo: procedure
-    .input(
-      z.object({
-        text: z.string(),
-      }),
-    )
-    .mutation((opts) => {
-      const foo = opts.ctx.db.foo
-      return {
-        greeting: `Hello, ${opts.input.text}. This is from db: ${foo}`,
-      }
-    }),
+  auth: authRouter,
 })
 
 export type AppRouter = typeof appRouter
