@@ -1,7 +1,5 @@
+import { signUpSchema } from "./schemas"
 import { procedure, router } from "@/trpc/init"
-import { z } from "zod"
-
-const signUpSchema = z.object({ email: z.string() })
 
 export const authRouter = router({
   signUp: procedure.input(signUpSchema).mutation(async ({ ctx, input }) => {
@@ -9,5 +7,6 @@ export const authRouter = router({
       email: input.email,
       status: "NEW_USER_REGISTERED",
     })
+    return { ok: true }
   }),
 })
