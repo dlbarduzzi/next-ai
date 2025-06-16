@@ -19,7 +19,12 @@ export function SignUp() {
     setQueryError(() => null)
     setRawQueryError(() => null)
     try {
-      await query.mutateAsync({ email: "", password: "" })
+      const resp = await query.mutateAsync({
+        email: "brian@email.com",
+        password: "aaaaaaaaA1!",
+      })
+      // eslint-disable-next-line no-console
+      console.log(resp)
     }
     catch (error) {
       if (error instanceof TRPCClientError) {

@@ -38,6 +38,7 @@ export default antfu({
     "style/jsx-curly-newline": "off",
     "style/max-len": ["error", { code: 200 }],
     "style/multiline-ternary": "off",
+    "style/operator-linebreak": "off",
     "style/quotes": "error",
     "ts/no-unused-vars": ["error", {
       args: "all",
