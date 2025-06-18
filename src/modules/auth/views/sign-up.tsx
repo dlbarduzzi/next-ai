@@ -20,9 +20,23 @@ export function SignUp() {
     setRawQueryError(() => null)
     try {
       const resp = await query.mutateAsync({
-        email: "brian@email.com",
+        email: "jane@email.com",
         password: "aaaaaaaaA1!",
       })
+      if (!resp.ok) {
+        switch (resp.error.code) {
+          case "signup/email-already-registered":
+            console.warn("--- EMAIL ---")
+            console.warn(resp)
+            return
+          case "signup/server-exception":
+            console.warn("--- EXCEPTION ---")
+            console.warn(resp)
+            return
+          default:
+            resp.error.code satisfies never
+        }
+      }
       // eslint-disable-next-line no-console
       console.log(resp)
     }
