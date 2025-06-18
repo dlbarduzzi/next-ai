@@ -1,5 +1,8 @@
 "use client"
 
+import NextLink from "next/link"
+import NextImage from "next/image"
+
 import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
 import { TRPCClientError } from "@trpc/client"
@@ -14,6 +17,8 @@ export function SignUp() {
 
   const trpc = useTRPC()
   const query = useMutation(trpc.auth.signUp.mutationOptions())
+
+  const isSubmitting = false
 
   async function onSubmit() {
     setQueryError(() => null)
@@ -54,6 +59,25 @@ export function SignUp() {
 
   return (
     <div className="grid gap-y-4">
+      <div className="flex">
+        <NextLink
+          href="/"
+          className={cn(
+            "rounded-full focus-visible:outline-none focus-visible:ring-2",
+            "focus-visible:ring-black focus-visible:ring-offset-2",
+            isSubmitting && "pointer-events-none",
+          )}
+        >
+          <NextImage
+            src="/images/logo.png"
+            alt="NextAI"
+            width={500}
+            height={500}
+            className="h-10 w-auto"
+          />
+          <span className="sr-only">Link to home page.</span>
+        </NextLink>
+      </div>
       <div>
         <Button type="button" onClick={onSubmit}>Sign up</Button>
       </div>
