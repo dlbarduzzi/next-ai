@@ -13,8 +13,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: `bg-btn-primary text-btn-primary-fg hover:bg-btn-primary-hover
-          focus-visible:ring-btn-primary-ring disabled:bg-btn-primary-disabled`,
+        default: `bg-indigo-500 text-white hover:bg-indigo-600
+          focus-visible:ring-indigo-500 disabled:bg-indigo-300`,
       },
       size: {
         default: "h-10 px-4 py-2",

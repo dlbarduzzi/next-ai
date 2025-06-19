@@ -39,8 +39,8 @@ export default function RootLayout({
       <head />
       <body
         className={cn(
-          "min-h-screen bg-primary font-sans text-base text-primary-fg antialiased",
-          "selection:bg-selection selection:text-selection-fg",
+          "min-h-screen bg-neutral-50 font-sans text-base text-neutral-900 antialiased",
+          "selection:bg-yellow-200 selection:text-neutral-900",
           fontGeistSans.variable,
           fontGeistMono.variable,
         )}

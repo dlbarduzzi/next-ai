@@ -36,7 +36,7 @@ export default antfu({
     "regexp/strict": "off",
     "style/arrow-parens": "off",
     "style/jsx-curly-newline": "off",
-    "style/max-len": ["error", { code: 200 }],
+    "style/max-len": ["error", { code: 88 }],
     "style/multiline-ternary": "off",
     "style/operator-linebreak": "off",
     "style/quotes": "error",

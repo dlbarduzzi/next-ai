@@ -1,6 +1,3 @@
-import NextLink from "next/link"
-
-import { Button } from "@/components/ui/button"
 import { SignUp } from "@/modules/auth/views/sign-up"
 
 export default function Page() {
@@ -12,16 +9,7 @@ export default function Page() {
         </h1>
       </section>
       <div className="p-4">
-        <div>
-          <Button type="button" asChild>
-            <NextLink href="/">
-              Go to Homepage
-            </NextLink>
-          </Button>
-        </div>
-        <div className="mt-4">
-          <SignUp />
-        </div>
+        <SignUp />
       </div>
     </div>
   )

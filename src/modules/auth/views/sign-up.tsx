@@ -1,113 +1,72 @@
 "use client"
 
+import type { SignUpSchema } from "@/modules/auth/schemas"
+
 import NextLink from "next/link"
 import NextImage from "next/image"
 
-import { useState } from "react"
-import { useMutation } from "@tanstack/react-query"
-import { TRPCClientError } from "@trpc/client"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import { Button } from "@/components/ui/button"
-import { useTRPC } from "@/trpc/client/provider"
-import { cn } from "@/lib/utils"
+
+import { cn, delay } from "@/lib/utils"
+import { signUpSchema } from "@/modules/auth/schemas"
 
 export function SignUp() {
-  const [queryError, setQueryError] = useState<string | null>(null)
-  const [rawQueryError, setRawQueryError] = useState<unknown | null>(null)
+  const form = useForm<SignUpSchema>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      email: "test@email.com",
+      password: "P@ssword1!",
+    },
+  })
 
-  const trpc = useTRPC()
-  const query = useMutation(trpc.auth.signUp.mutationOptions())
+  const { isSubmitting } = form.formState
 
-  const isSubmitting = false
-
-  async function onSubmit() {
-    setQueryError(() => null)
-    setRawQueryError(() => null)
-    try {
-      const resp = await query.mutateAsync({
-        email: "jane@email.com",
-        password: "aaaaaaaaA1!",
-      })
-      if (!resp.ok) {
-        switch (resp.error.code) {
-          case "signup/email-already-registered":
-            console.warn("--- EMAIL ---")
-            console.warn(resp)
-            return
-          case "signup/server-exception":
-            console.warn("--- EXCEPTION ---")
-            console.warn(resp)
-            return
-          default:
-            resp.error.code satisfies never
-        }
-      }
-      // eslint-disable-next-line no-console
-      console.log(resp)
-    }
-    catch (error) {
-      if (error instanceof TRPCClientError) {
-        setQueryError(() => "TRCP Client Error")
-        setRawQueryError(() => error)
-      }
-      else {
-        setQueryError(() => "Internal Server Error")
-        setRawQueryError(() => error)
-      }
-    }
+  async function onSubmit(data: SignUpSchema) {
+    await delay(2000)
+    console.warn(data)
   }
 
   return (
-    <div className="grid gap-y-4">
+    <div className={cn(
+      "w-full max-w-[420px] overflow-hidden rounded-xl border border-gray-100",
+      "bg-white px-5 py-8",
+    )}
+    >
       <div className="flex">
         <NextLink
           href="/"
           className={cn(
-            "rounded-full focus-visible:outline-none focus-visible:ring-2",
-            "focus-visible:ring-primary-ring focus-visible:ring-offset-2",
-            isSubmitting && "pointer-events-none",
+            "rounded-none focus-visible:outline-none focus-visible:ring-2",
+            "focus-visible:ring-neutral-900 focus-visible:ring-offset-2",
+            isSubmitting && "pointer-events-none focus-visible:ring-0",
           )}
         >
           <NextImage
-            src="/images/logo.png"
+            src="/images/logo-full.png"
             alt="NextAI"
             width={500}
             height={500}
-            className="h-10 w-auto"
+            className="h-auto w-28"
           />
           <span className="sr-only">Link to home page.</span>
         </NextLink>
       </div>
-      <div>
-        <Button type="button" onClick={onSubmit} disabled>Sign up</Button>
+      <div className="mt-8">
+        <h2 className="text-lg font-extrabold tracking-tight text-neutral-800">
+          Sign up
+        </h2>
+        <p className="mt-0.5 text-sm text-neutral-600">
+          Create an account to get started.
+        </p>
       </div>
-      {queryError
-        ? (
-            <div className="grid gap-y-4">
-              <div className={cn(
-                "rounded-md bg-red-100 p-4 text-sm font-medium text-red-800 max-w-fit",
-              )}
-              >
-                <span>{queryError}</span>
-                <span className="ml-3 border-l border-l-red-800 pl-3">
-                  <span
-                    role="button"
-                    onClick={() => {
-                      setQueryError(() => null)
-                      setRawQueryError(() => null)
-                    }}
-                  >
-                    Dismiss
-                  </span>
-                </span>
-              </div>
-              <div className="rounded-md bg-gray-100 p-4 text-sm">
-                <div className="mb-4 font-semibold">Raw Error</div>
-                <pre className="whitespace-pre-wrap text-sm">{JSON.stringify(rawQueryError, null, 2)}</pre>
-              </div>
-            </div>
-          )
-        : null}
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8">
+        <div>
+          <Button type="submit" disabled={isSubmitting}>Create Account</Button>
+        </div>
+      </form>
     </div>
   )
 }
