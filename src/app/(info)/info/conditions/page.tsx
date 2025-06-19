@@ -1,21 +1,19 @@
 import type { Metadata } from "next"
 
-import { SignUp } from "@/modules/auth/views/sign-up"
-
 export const metadata: Metadata = {
-  title: "Sign up",
+  title: "Conditions",
 }
 
 export default function Page() {
   return (
     <div>
-      <section aria-labelledby="sign-up-header">
-        <h1 id="sign-up-header" className="sr-only">
-          Sign up.
+      <section aria-labelledby="info-conditions-header">
+        <h1 id="info-conditions-header" className="sr-only">
+          Conditions.
         </h1>
       </section>
       <div className="p-4">
-        <SignUp />
+        Conditions page. Under construction...
       </div>
     </div>
   )

@@ -8,7 +8,7 @@ import * as RadixLabel from "@radix-ui/react-label"
 import { cn } from "@/lib/utils"
 import { cva } from "class-variance-authority"
 
-const labelVariants = cva("text-sm font-semibold leading-none text-neutral-900")
+const labelVariants = cva("text-sm font-semibold leading-none text-gray-900")
 
 const Label = React.forwardRef<
   React.ComponentRef<typeof RadixLabel.Root>,

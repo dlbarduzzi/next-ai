@@ -11,7 +11,7 @@ import { TRPCReactProvider } from "@/trpc/client/provider"
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    template: `${siteConfig.name} | %s`,
   },
   description: siteConfig.description,
   icons: {
@@ -39,8 +39,8 @@ export default function RootLayout({
       <head />
       <body
         className={cn(
-          "min-h-screen bg-neutral-50 font-sans text-base text-neutral-900 antialiased",
-          "selection:bg-yellow-200 selection:text-neutral-900",
+          "min-h-screen bg-gray-50 font-sans text-base text-gray-900 antialiased",
+          "selection:bg-yellow-200 selection:text-gray-900",
           fontGeistSans.variable,
           fontGeistMono.variable,
         )}

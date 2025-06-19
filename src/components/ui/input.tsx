@@ -7,13 +7,13 @@ import { cva } from "class-variance-authority"
 
 const inputVariants = cva(
   `flex h-10 w-full items-center rounded-md border bg-white px-3 py-5 text-sm
-  text-neutral-900 placeholder:text-neutral-400 focus-visible:outline-none
-  focus-visible:ring-2 disabled:cursor-not-allowed disabled:border-neutral-200
-  disabled:bg-neutral-50 disabled:text-neutral-400`,
+  text-gray-900 placeholder:text-gray-400 focus-visible:outline-none
+  focus-visible:ring-2 disabled:cursor-not-allowed disabled:border-gray-200
+  disabled:bg-gray-50 disabled:text-gray-400`,
   {
     variants: {
       variant: {
-        default: `border-neutral-300 focus-visible:border-blue-400
+        default: `border-gray-300 focus-visible:border-blue-400
           focus-visible:ring-blue-200`,
         danger: `border-red-400 focus-visible:border-red-400
           focus-visible:ring-red-200`,
