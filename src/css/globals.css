@@ -24,3 +24,20 @@
       dark:focus:outline-none dark:focus:ring-0 dark:focus:ring-offset-0;
   }
 }
+
+@layer base {
+  :root {
+    --primary-bg: 210 20% 98%;
+    --primary-fg: 220.9 39.3% 11%;
+    --primary-ring: 220.9 39.3% 11%;
+    --selection-bg: 50.4 97.8% 63.5%;
+    --selection-fg: 220.9 39.3% 11%;
+
+    /* Primary button */
+    --btn-primary: 198.6 88.7% 48.4%;
+    --btn-primary-fg: 0 0% 100%;
+    --btn-primary-ring: 198.6 88.7% 48.4%;
+    --btn-primary-hover: 200.4 98% 39.4%;
+    --btn-primary-disabled: 199.4 95.5% 73.9%;
+  }
+}

@@ -64,7 +64,7 @@ export function SignUp() {
           href="/"
           className={cn(
             "rounded-full focus-visible:outline-none focus-visible:ring-2",
-            "focus-visible:ring-black focus-visible:ring-offset-2",
+            "focus-visible:ring-primary-ring focus-visible:ring-offset-2",
             isSubmitting && "pointer-events-none",
           )}
         >
@@ -79,7 +79,7 @@ export function SignUp() {
         </NextLink>
       </div>
       <div>
-        <Button type="button" onClick={onSubmit}>Sign up</Button>
+        <Button type="button" onClick={onSubmit} disabled>Sign up</Button>
       </div>
       {queryError
         ? (
