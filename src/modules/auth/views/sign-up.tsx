@@ -8,6 +8,7 @@ import NextImage from "next/image"
 import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 import {
   FormControl,
@@ -29,6 +30,7 @@ import { signUpSchema } from "@/modules/auth/schemas"
 
 export function SignUp() {
   const [isTermsChecked, setIsTermsChecked] = useState(true)
+  const [showPasswordValue, setShowPasswordValue] = useState(false)
 
   const form = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
@@ -112,16 +114,29 @@ export function SignUp() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
-                  <div className="mt-0.5">
+                  <div className="relative mt-0.5">
                     <FormControl>
                       <Input
                         {...field}
-                        type="password"
+                        type={showPasswordValue ? "text" : "password"}
                         variant={errors.password ? "danger" : "default"}
                         disabled={isSubmitting}
                         placeholder="Enter your password..."
+                        className="pr-12"
                       />
                     </FormControl>
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                      <div
+                        role="button"
+                        onClick={() => setShowPasswordValue(() => !showPasswordValue)}
+                        className={cn("text-gray-300", isSubmitting && "pointer-events-none")}
+                      >
+                        {showPasswordValue
+                          ? <FaEye className="size-6" />
+                          : <FaEyeSlash className="size-6" />
+                        }
+                      </div>
+                    </div>
                   </div>
                   <FormMessage />
                 </FormItem>
